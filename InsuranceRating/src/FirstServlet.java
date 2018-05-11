@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class FirstServlet
@@ -38,14 +39,17 @@ public class FirstServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String uid=request.getParameter("uid");
 		String pwd=request.getParameter("pwd");
-		String role=new InsuranceDAO().isUser(uid,pwd);
-		if(role=="") {
-			System.out.println("SOrry invalid username or password");
+		UserBean details=new InsuranceDAO().isUser(uid,pwd);
+		out.print("pass");
+		if(details.getRole()=="") {
+			out.print("SOrry invalid username or password");
 			RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");
 			rd.include(request,response);
 		}
 		else {
-			if(role.equals("user")) {
+			HttpSession session=request.getSession();
+			session.setAttribute("Uname,details.getUsername()");
+			if(details.getRole().equals("user")) {
 				response.sendRedirect("Mainmenu_user.jsp");
 			}
 			else if(role.equals("admin")) {

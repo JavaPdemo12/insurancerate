@@ -10,7 +10,7 @@
 <div id="top" style=height:100px></div>
 <div id="middle" style="height:200px border:solid">
 <center><h1>Welcome to Insurance Rating System</h1>
-<a href="" color="blue">click here to login</a><</center></div>
+<a href="Login.jsp" color="blue">click here to login</a><</center></div>
 <div id="bottom"></div>
 </body>
 </html>
